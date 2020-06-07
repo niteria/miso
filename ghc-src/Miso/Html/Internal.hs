@@ -85,13 +85,7 @@ instance L.ToHtml (VTree action) where
   toHtml (VText x) | T.null x = L.toHtml (" " :: MisoString)
                    | otherwise = L.toHtml x
   toHtml VNode{..} =
-    let
-      noEnd = ["img", "input", "br", "hr", "meta"]
-      tag = toTag vType
-      ele =
-          if tag `elem` noEnd
-            then L.makeElementNoEnd tag
-            else L.makeElement tag kids
+    let ele = L.makeElement (toTag vType) kids
     in L.with ele as
       where
         Props xs = vProps
