@@ -29,7 +29,7 @@ window['walk'] = function walk(vtree, node, doc) {
     vdomChild = vtree['children'][i];
     domChild = node.childNodes[i];
     if (vdomChild.type === 'vtext') {
-        if (domChild.nodeType !== Node.TEXT_NODE) return false;
+        if (typeof domChild === 'undefined' || domChild.nodeType !== Node.TEXT_NODE) return false;
 
         if (vdomChild['text'] === domChild.textContent) {
           vdomChild['domRef'] = domChild;
